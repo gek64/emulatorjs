@@ -11,7 +11,7 @@ let app = express()
 // 所有路由设置为可跨域访问
 app.use(cors())
 
-app.use('/', function (req, res) {
+app.use('/mock', function (req, res) {
     res.json(mock.newData('mock生产的数据'))
 })
 
@@ -19,5 +19,7 @@ app.listen('80', () => {
     console.log('http://127.0.0.1:80')
 })
 
-// axios 发送get请求
-axios.getUrl('/')
+module.exports = {
+    newData: mock.newData,
+    getUrl: axios.getUrl
+}
