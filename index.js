@@ -14,8 +14,8 @@ let startServer = function (url, template) {
         res.json(mock.newData(template))
         next()
     })
-    app.listen('80', function () {
-        console.log('visit: http://localhost' + url)
+    let server = app.listen('3000', function () {
+        console.log('mock data server visit: http://localhost:' + server.address().port + url)
     })
 }
 
