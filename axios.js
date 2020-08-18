@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-let getUrl = function (url) {
+let getURL = function (url) {
     axios.get(url)
         .then(function (res) {
             console.log('succeeded!')
@@ -14,5 +14,5 @@ let getUrl = function (url) {
 }
 
 module.exports = {
-    getUrl: getUrl
+    getURL
 }
