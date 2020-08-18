@@ -6,7 +6,7 @@ const cors = require('cors')
 // 获取自定义的mock中间件
 const mock = require('./mock')
 
-let server = function (url, template) {
+let startServer = function (url, template) {
     let app = express()
     // 所有路由设置为可跨域访问
     app.use(cors())
@@ -14,11 +14,9 @@ let server = function (url, template) {
         res.json(mock.newData(template))
         next()
     })
-    app.listen('80', () => {
-        console.log('http://127.0.0.1' + url)
-    })
+    app.listen('80')
 }
 
 module.exports = {
-    server
+    startServer
 }
