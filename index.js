@@ -14,7 +14,9 @@ let startServer = function (url, template) {
         res.json(mock.newData(template))
         next()
     })
-    app.listen('80')
+    app.listen('80', function () {
+        console.log('visit: http://localhost' + url)
+    })
 }
 
 module.exports = {
