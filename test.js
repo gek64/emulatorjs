@@ -24,8 +24,7 @@ let edu = [
         'count|1-1000': 1
     }
 ]
-mock.setServer('/mock/gender', gender)
 
-mock.setServer('/mock/edu', edu)
-
-mock.startServer(5000)
+mock.set('/mock/gender', gender)
+mock.set('/mock/edu', edu)
+mock.start()

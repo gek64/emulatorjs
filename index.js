@@ -1,36 +1,41 @@
 const express = require('express')
-
-// https://github.com/expressjs/cors 引入cors中间件解决跨域访问问题
 const cors = require('cors')
+const mockController = require('./mockController')
 
-// 获取自定义的mock中间件
-const mock = require('./mock')
-
+//默认仿真器端口
 const defaultServerPort = 5000
+const app = express()
 
-let app = express()
-
-app.use(cors())
-
-
-let setServer = function (url, template) {
-    app.use(url, function (req, res, next) {
-        res.json(mock.newData(template))
-        next()
+//设置仿真器路由
+function set(url, template) {
+    app.use(url, function (req, res) {
+        res.json(mockController.emulator(template))
     })
 }
 
-let startServer = function (p) {
-    let port = defaultServerPort
-    if (!isNaN(p)) {
-        port = p
+//判断输入是否是一个端口
+function isPort(port){
+    if (Number.isInteger(port)){
+        if (port>=0 && port<=65535){
+            return true
+        }
     }
-    app.listen(port, function () {
-        console.log('mock server started, visit at http://127.0.0.1:' + port)
-    });
+    return false
+}
+
+//启动仿真器
+function start(port) {
+    //全局允许跨域访问
+    app.use(cors())
+
+    if (!isPort(port)){
+        port = defaultServerPort
+    }
+    app.listen(port)
 }
 
 module.exports = {
-    setServer,
-    startServer
+    set,
+    start,
+    isPort,
 }
