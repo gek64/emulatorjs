@@ -1,30 +1,19 @@
-let mock = require('./index')
+let Emu = require('./index')
+let Mock = require('better-mock')
 
-let gender = [
-    {
-        'gender': 'female',
-        'count|1-1000': 1
-    },
-    {
-        'gender': 'male',
-        'count|1-1000': 1
-    }]
+let name = []
+let url = '/mock/name'
+let port = 80
 
-let edu = [
-    {
-        'education': '学士',
-        'count|1-1000': 1
-    },
-    {
-        'education': '硕士',
-        'count|1-1000': 1
-    },
-    {
-        'education': '博士',
+for (let i = 0; i < Mock.Random.integer(1, 100); i++) {
+    let obj = {
+        'name': '@name',
         'count|1-1000': 1
     }
-]
+    name.push(obj)
+}
 
-mock.set('/mock/gender', gender)
-mock.set('/mock/edu', edu)
-mock.start()
+Emu.set(url, name)
+Emu.start(port)
+
+console.log('http://localhost:%d%s', port, url)

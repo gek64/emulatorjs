@@ -2,5 +2,5 @@
 
 ~~~shell
 npm install
-node ./index.js
+node test.js
 ~~~
