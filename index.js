@@ -6,7 +6,7 @@ const cors = require('cors')
 // 获取自定义的mock中间件
 const mock = require('./mock')
 
-const serverPort = 3000
+const defaultServerPort = 5000
 
 let app = express()
 
@@ -20,10 +20,14 @@ let setServer = function (url, template) {
     })
 }
 
-let startServer = function () {
-    let server = app.listen(serverPort, function () {
-        console.log('mock server started')
-    })
+let startServer = function (p) {
+    let port = defaultServerPort
+    if (!isNaN(p)) {
+        port = p
+    }
+    app.listen(port, function () {
+        console.log('mock server started, visit at http://127.0.0.1:' + port)
+    });
 }
 
 module.exports = {
