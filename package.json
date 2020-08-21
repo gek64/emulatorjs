@@ -2,7 +2,8 @@
   "name": "ce-emulator",
   "version": "1.0.0",
   "description": "api emulator base on better-mock",
-  "main": "index.js",
+  "main": "src/index.js",
+  "files": ["/src",""],
   "scripts": {
     "test": "node test.js"
   },

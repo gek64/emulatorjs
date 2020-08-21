@@ -1,4 +1,4 @@
-const emulator = require('./index')
+const emulator = require('./src')
 
 let emu = new emulator.setup()
 
