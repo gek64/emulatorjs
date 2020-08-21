@@ -1,14 +1,14 @@
 {
-  "name": "ceemulator",
+  "name": "ce-emulator",
   "version": "1.0.0",
   "description": "api emulator base on better-mock",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["mock","api","emulator"],
+  "author": "sikowe",
+  "license": "MIT",
   "dependencies": {
     "better-mock": "^0.2.6",
     "cors": "^2.8.5",
