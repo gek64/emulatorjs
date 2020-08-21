@@ -1,77 +1,62 @@
-# ceEmulator
-- 基于`better-mock`的后端数据仿真器
+# ce-emulator
+- 基于`better-mock`等的后端数据仿真器
+- 集成了`express`服务器可以直接启动`API`接口
+- 完善了`[{},{}]`类型对象的生成功能
+- 不断更新中!!!
 
 ## 安装方法
 
-### 安装ceEmulator依赖
-~~~shell
-cd ceEmulator
-npm install
+### 安装
+~~~shell script
+npm install ce-emulator
 ~~~
 
-### 将`test.js` 复制到你的项目根目录
-~~~shell
-cd ceEmulator
-cp test.js /PATH_TO_YOUR_PROJECT/
+## 使用
+
+### 实例
+
+~~~shell script
+// setup
+mkdir demo && cd demo
+npm install ce-emulator
+touch emulator.js && nano emulator.js
+
+// run
+node emulator.js
 ~~~
 
-### 修改你的项目根目录下的`test.js`中本模块引用地址
+#### emulator.js
 ~~~javascript
-const emulator = require('THE_PATH_TO_ceEmulator')
-~~~
-
-### 创建仿真器运行脚本
-- 在你的项目中的`package.json`中添加`"test": "node test.js"`
-~~~json
-{
-  "name": "your_project",
-  "main": "index.js",
-  "scripts": {
-    "test": "node test.js"
-  }
-}
-~~~
-
-### 运行仿真器
-~~~shell
-npm run test
-~~~
-
-## 配置方法
-
-### 在你的项目内配置`test.js`
-
-~~~javascript
-// 引入ceEmulator模块,确保已经按照安装方法中安装了模块的依赖
-const emulator = require('./ceEmulator')
+// 引入ce-emulator模块
+const emulator = require('ce-emulator')
 
 // 新建setup对象
 let emu = new emulator.setup()
 
 // 定义仿真器模板
 // 具体参考 https://lavyun.gitee.io/better-mock/document/syntax-specification.html
-let name = {
-    'name': '@cname',
-    'count|1-1000': 1
+let person = {
+    'name': '@name',
+    'age|0-200': 1
 }
 
-// 按照better-mock 模式处理模板
-emu.set('/mock1', name)
+// 第一个参数是仿真API的URL,第二个参数是仿真器模板,默认接受所有HTTP支持的方法
+emu.set('/mock1', person)
 
-// 在模板外套一层array,并定义内部object重复5次
-// 忽略array的object
-emu.set('/mock2', name, 5)
+// 外部默认使用[]包裹内部{},无需定义外部[]自动添加,如模板为[]对象则直接不处理返回,5表示内部{}模板定义的object重复出现5次,其余同上
+emu.set('/mock2', person, 5)
 
-// 在模板外套一层array,并定义内部object重复随机5-100次
-// 忽略array的object
-emu.set('/mock3', name, 5, 100)
+// min=5 max=100随机出现5-100次,其余同上
+emu.set('/mock3', person, 5, 100)
 
-// 在80端口启动仿真器,如果不填或者不是端口则默认为端口5000
-emu.start(80)
+// 在5000端口启动仿真器,默认为端口5000
+emu.start(5000)
 
 // 访问以下url以查看返回的json数据包
-console.log('http://localhost/mock1')
-console.log('http://localhost/mock2')
-console.log('http://localhost/mock3')
-
+console.log('1 person,visit at '+'http://localhost:5000/mock1')
+console.log('5 persons,visit at '+'http://localhost:5000/mock2')
+console.log('5~100 persons,visit at '+'http://localhost:5000/mock3')
 ~~~
+
+## About
+- Feel free to send me issues at [github](https://github.com/cekys/ce-emulator)
