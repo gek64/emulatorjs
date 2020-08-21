@@ -1,7 +1,7 @@
 {
-  "name": "mock",
+  "name": "ceemulator",
   "version": "1.0.0",
-  "description": "",
+  "description": "api emulator base on better-mock",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"

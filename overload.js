@@ -15,5 +15,5 @@ function addMethod(object, name, fn) {
 }
 
 module.exports = {
-    addMethod
+    addMethod,
 }

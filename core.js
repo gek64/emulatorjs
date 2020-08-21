@@ -33,5 +33,5 @@ function setup() {
 
 module.exports = {
     setup,
-    getRndInteger
+    getRndInteger,
 }
