@@ -1,23 +1,40 @@
 const express = require('express')
 const cors = require('cors')
-const Mock = require('better-mock')
-
-// 仿真器核心,依靠模板返回json
-function emulator(template) {
-    return Mock.mock(template)
-}
+const core = require('./core')
+const Overload = require('./overload')
 
 
 // 默认仿真器端口
 const defaultServerPort = 5000
 const app = express()
+const emu = new core.setup()
 
-// 设置仿真器路由
-function set(url, template) {
-    // 设置路由,并设置跨域访问
-    app.use(url, cors(), function (req, res, next) {
-        res.send(emulator(template))
-        next()
+// 仿真器,重载多个函数
+function setup() {
+    Overload.addMethod(this, 'set', function (url, template) {
+        app.use(url, cors(), function (req, res, next) {
+            res.send(emu.set(template))
+            next()
+        })
+    })
+    Overload.addMethod(this, 'set', function (url, template, n) {
+        app.use(url, cors(), function (req, res, next) {
+            res.send(emu.set(template, n))
+            next()
+        })
+    })
+    Overload.addMethod(this, 'set', function (url, template, min, max) {
+        app.use(url, cors(), function (req, res, next) {
+            res.send(emu.set(template, min, max))
+            next()
+        })
+    })
+    //启动仿真器
+    Overload.addMethod(this, 'start', function (port) {
+        if (!isPort(port)) {
+            port = defaultServerPort
+        }
+        app.listen(port)
     })
 }
 
@@ -31,16 +48,7 @@ function isPort(port) {
     return false
 }
 
-// 启动仿真器
-function start(port) {
-    if (!isPort(port)) {
-        port = defaultServerPort
-    }
-    app.listen(port)
-}
 
 module.exports = {
-    set,
-    start,
-    isPort,
+    setup,
 }
