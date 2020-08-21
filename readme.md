@@ -1,4 +1,4 @@
-# ce-emulator
+# EmulatorJS
 - NodeJS 后端API数据仿真器
 - 集成了`better-mock`,可模板化生成对象
 - 集成了`express`服务器可以直接启动`API`接口
@@ -9,7 +9,7 @@
 
 ### 安装
 ~~~shell script
-npm install ce-emulator
+npm install emulatorjs
 ~~~
 
 ## 使用
@@ -19,7 +19,7 @@ npm install ce-emulator
 ~~~shell script
 // setup
 mkdir demo && cd demo
-npm install ce-emulator
+npm install emulatorjs
 touch emulator.js && nano emulator.js
 
 // run
@@ -28,8 +28,8 @@ node emulator.js
 
 #### emulator.js
 ~~~javascript
-// 引入ce-emulator模块
-const emulator = require('ce-emulator')
+// 引入emulatorjs模块
+const emulator = require('emulatorjs')
 
 // 新建setup对象
 let emu = new emulator.setup()
@@ -60,4 +60,4 @@ console.log('5~100 persons,visit at '+'http://localhost:5000/mock3')
 ~~~
 
 ## About
-- Feel free to send me issues at [github](https://github.com/cekys/ce-emulator)
+- Feel free to send me issues at [github](https://github.com/cekys/emulatorjs)

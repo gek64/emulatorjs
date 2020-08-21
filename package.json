@@ -1,6 +1,6 @@
 {
-  "name": "ce-emulator",
-  "version": "1.0.3",
+  "name": "emulatorjs",
+  "version": "0.0.1",
   "description": "server api emulator",
   "main": "src/index.js",
   "scripts": {
