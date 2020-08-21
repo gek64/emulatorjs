@@ -1,5 +1,6 @@
 # ce-emulator
-- 基于`better-mock`等的后端数据仿真器
+- NodeJS 后端API数据仿真器
+- 集成了`better-mock`,可模板化生成对象
 - 集成了`express`服务器可以直接启动`API`接口
 - 完善了`[{},{}]`类型对象的生成功能
 - 不断更新中!!!

@@ -1,7 +1,7 @@
 {
   "name": "ce-emulator",
-  "version": "1.0.2",
-  "description": "api emulator base on express better-mock",
+  "version": "1.0.3",
+  "description": "server api emulator",
   "main": "src/index.js",
   "scripts": {
     "dev": "node src/index.js"
@@ -9,7 +9,8 @@
   "keywords": [
     "mock",
     "api",
-    "emulator"
+    "emulator",
+    "express"
   ],
   "author": "cekys",
   "license": "MIT",
