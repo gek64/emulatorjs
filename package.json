@@ -1,6 +1,6 @@
 {
   "name": "emulatorjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "server api emulator",
   "main": "src/index.js",
   "scripts": {

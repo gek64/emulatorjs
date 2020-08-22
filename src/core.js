@@ -12,22 +12,24 @@ function setup() {
         return Mock.mock(template)
     })
     Overload.addMethod(this, 'set', function (template, n) {
-        if (!Array.isArray(template)) {
-            let temp = []
-            for (let i = 0; i < n; i++) {
-                temp.push(template)
-            }
-            return Mock.mock(temp)
+        if (Array.isArray(template)) {
+            console.log('warning ' + template + ' is a array')
         }
+        let temp = []
+        for (let i = 0; i < n; i++) {
+            temp.push(template)
+        }
+        return Mock.mock(temp)
     })
     Overload.addMethod(this, 'set', function (template, min, max) {
-        if (!Array.isArray(template)) {
-            let temp = []
-            for (let i = 0; i < getRndInteger(min, max); i++) {
-                temp.push(template)
-            }
-            return Mock.mock(temp)
+        if (Array.isArray(template)) {
+            console.log('warning ' + template + ' is a array')
         }
+        let temp = []
+        for (let i = 0; i < getRndInteger(min, max); i++) {
+            temp.push(template)
+        }
+        return Mock.mock(temp)
     })
 }
 
