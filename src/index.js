@@ -1,42 +1,71 @@
 const express = require('express')
 const cors = require('cors')
 const core = require('./core')
-const Overload = require('./overload')
-
 
 // 默认仿真器端口
 const defaultServerPort = 5000
 const app = express()
-const emu = new core.setup()
+const Core = new core.Core
 
-// 仿真器,重载多个函数
-function setup() {
-    Overload.addMethod(this, 'set', function (url, template) {
+
+class Setter {
+    configure(url, template) {
         app.use(url, cors(), function (req, res, next) {
-            res.send(emu.set(template))
+            res.send(Core.configure(template))
             next()
         })
-    })
-    Overload.addMethod(this, 'set', function (url, template, n) {
+    }
+
+    configureArray(url, template, count) {
         app.use(url, cors(), function (req, res, next) {
-            res.send(emu.set(template, n))
+            res.send(Core.configureArray(template, count))
             next()
         })
-    })
-    Overload.addMethod(this, 'set', function (url, template, min, max) {
+    }
+
+    configureRandomArray(url, template, min, max) {
         app.use(url, cors(), function (req, res, next) {
-            res.send(emu.set(template, min, max))
+            res.send(Core.configureRandomArray(template, min, max))
             next()
         })
-    })
-    //启动仿真器
-    Overload.addMethod(this, 'start', function (port) {
+    }
+
+    start(port) {
         if (!isPort(port)) {
             port = defaultServerPort
         }
         app.listen(port)
-    })
+    }
 }
+
+// // 重载Setter
+// function Setter() {
+//     Overload.addMethod(this, 'configure', function (url, template) {
+//         app.use(url, cors(), function (req, res, next) {
+//             res.send(Core.configure(template))
+//             next()
+//         })
+//     })
+//     Overload.addMethod(this, 'configure', function (url, template, count) {
+//         app.use(url, cors(), function (req, res, next) {
+//             res.send(Core.configure(template, count))
+//             next()
+//         })
+//     })
+//     Overload.addMethod(this, 'configure', function (url, template, min, max) {
+//         app.use(url, cors(), function (req, res, next) {
+//             res.send(Core.configure(template, min, max))
+//             next()
+//         })
+//     })
+//     //启动仿真器
+//     Overload.addMethod(this, 'start', function (port) {
+//         if (!isPort(port)) {
+//             port = defaultServerPort
+//         }
+//         app.listen(port)
+//     })
+// }
 
 // 判断输入是否是一个端口
 function isPort(port) {
@@ -49,5 +78,5 @@ function isPort(port) {
 }
 
 module.exports = {
-    setup,
+    Setter
 }

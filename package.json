@@ -1,10 +1,11 @@
 {
   "name": "emulatorjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "server api emulator",
   "main": "src/index.js",
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "node src/dev-test.js",
+    "test": "node src/index.js"
   },
   "keywords": [
     "mock",

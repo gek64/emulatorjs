@@ -1,6 +1,5 @@
-// https://johnresig.com/blog/javascript-method-overloading/
-
-// addMethod - By John Resig (MIT Licensed)
+// 使用闭包实现重载函数
+// 需要new 方法对象来使用
 function addMethod(object, name, fn) {
     let old = object[name];
     if (old)
@@ -15,5 +14,5 @@ function addMethod(object, name, fn) {
 }
 
 module.exports = {
-    addMethod,
+    addMethod
 }
