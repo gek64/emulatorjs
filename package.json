@@ -2,15 +2,20 @@
   "name": "emulatorjs",
   "version": "0.0.2",
   "description": "server api emulator",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "tsc && node dist/index.js",
+    "build": "tsc",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "mock",
     "api",
     "emulator",
     "express"
+  ],
+  "files": [
+    "dist/**/*"
   ],
   "author": "cekys",
   "license": "MIT",

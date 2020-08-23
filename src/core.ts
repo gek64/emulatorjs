@@ -1,13 +1,13 @@
-const Overload = require('./overload')
-const Mock = require('better-mock')
+import Mock = require('better-mock');
+import Overload = require('./overload');
 
 // 获取随机整数
-function getRndInteger(min, max) {
+function getRndInteger(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min)) + min
 }
 
 // 仿真器核心,重载多个函数
-function setup() {
+function Setup() {
     Overload.addMethod(this, 'set', function (template) {
         return Mock.mock(template)
     })
@@ -33,7 +33,7 @@ function setup() {
     })
 }
 
-module.exports = {
-    setup,
-    getRndInteger,
+export = {
+    Setup,
+    getRndInteger
 }
