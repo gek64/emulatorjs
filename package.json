@@ -13,7 +13,7 @@
     "emulator",
     "express"
   ],
-  "author": "cekys",
+  "author": "vivye",
   "license": "MIT",
   "dependencies": {
     "better-mock": "^0.2.6",
