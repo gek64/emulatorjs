@@ -60,4 +60,4 @@ console.log('5~100 persons,visit at '+'http://localhost:5000/mock3')
 ~~~
 
 ## About
-- Feel free to send me issues at [github](https://github.com/vivye/emulatorjs)
+- Feel free to send me issues to me
